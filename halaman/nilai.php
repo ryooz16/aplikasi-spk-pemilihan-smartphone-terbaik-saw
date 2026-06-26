@@ -10,45 +10,7 @@ $inputBenchmark = '';
 $inputKamera = '';
 $inputStorage = '';
 
-function konversiBenchmark($score) {
-    if ($score >= 1500000) return 5;
-    if ($score >= 1000000) return 4;
-    if ($score >= 700000) return 3;
-    if ($score >= 400000) return 2;
-    return 1;
-}
-
-function konversiRAM($ram) {
-    if ($ram >= 12) return 5;
-    if ($ram >= 8) return 4;
-    if ($ram >= 6) return 3;
-    if ($ram >= 4) return 2;
-    return 1;
-}
-
-function konversiStorage($storage) {
-    if ($storage >= 256) return 5;
-    if ($storage >= 128) return 4;
-    if ($storage >= 64) return 3;
-    if ($storage >= 32) return 2;
-    return 1;
-}
-
-function konversiKamera($kamera) {
-    if ($kamera >= 108) return 5;
-    if ($kamera >= 64) return 4;
-    if ($kamera >= 48) return 3;
-    if ($kamera >= 13) return 2;
-    return 1;
-}
-
-function konversiHarga($harga) {
-    if ($harga <= 2000000) return 5;
-    if ($harga <= 4000000) return 4;
-    if ($harga <= 6000000) return 3;
-    if ($harga <= 8000000) return 2;
-    return 1;
-}
+// Menggunakan nilai asli (raw values) untuk perhitungan yang lebih akurat
 
 if (isset($_GET['delete'])) {
     $deleteId = intval($_GET['delete']);
@@ -89,11 +51,11 @@ if (isset($_POST['simpan'])) {
         mysqli_query($conn, "DELETE FROM nilai WHERE id_smartphone = $id");
 
         $nilai = [
-            1 => konversiHarga($harga),
-            2 => konversiRAM($ram),
-            3 => konversiBenchmark($benchmark),
-            4 => konversiKamera($kamera),
-            5 => konversiStorage($storage),
+            1 => $harga,
+            2 => $ram,
+            3 => $benchmark,
+            4 => $kamera,
+            6 => $storage,
         ];
 
         foreach ($nilai as $id_kriteria => $v) {
@@ -124,11 +86,11 @@ if (isset($_POST['update'])) {
 
     if ($id > 0) {
         $nilai = [
-            1 => konversiHarga($harga),
-            2 => konversiRAM($ram),
-            3 => konversiBenchmark($benchmark),
-            4 => konversiKamera($kamera),
-            5 => konversiStorage($storage),
+            1 => $harga,
+            2 => $ram,
+            3 => $benchmark,
+            4 => $kamera,
+            6 => $storage,
         ];
 
         foreach ($nilai as $id_kriteria => $v) {

@@ -286,5 +286,5 @@ tbody tr:hover td {
     <a href="kriteria.php" class="<?= $currentPage === 'kriteria.php' ? 'active' : '' ?>">📊 Kriteria</a>
     <a href="nilai.php" class="<?= $currentPage === 'nilai.php' ? 'active' : '' ?>">📝 Input Nilai</a>
     <a href="hasil.php" class="<?= $currentPage === 'hasil.php' ? 'active' : '' ?>">🏆 Hasil Ranking</a>
-    <a href="../proses/hitung_saw.php" class="<?= $currentPage === 'hitung_saw.php' ? 'active' : '' ?>">⚙️ Hitung SAW</a>
+    <!-- <a href="../proses/hitung_saw.php" class="<?= $currentPage === 'hitung_saw.php' ? 'active' : '' ?>">⚙️ Hitung SAW</a> -->
 </div>

@@ -101,7 +101,7 @@ Require_once __DIR__ . '/../layout/sidebar.php';
             <div class="card-grid">
                 <div class="stat-card">
                     <p class="eyebrow">Nilai SAW</p>
-                    <h3><?= round($top['nilai'], 3) ?></h3>
+                    <h3><?= number_format($top['nilai'], 3) ?></h3>
                 </div>
                 <?php if ($bestSpek): ?>
                     <div class="stat-card">
@@ -116,6 +116,66 @@ Require_once __DIR__ . '/../layout/sidebar.php';
             </div>
         </div>
     <?php endif; ?>
+
+    <div class="card">
+        <h3>Matriks Penilaian (Keputusan)</h3>
+        <div class="table-responsive">
+            <?php if (empty($data) || empty($kriteria)) : ?>
+                <p class="no-data">Belum ada data nilai smartphone atau kriteria.</p>
+            <?php else : ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Smartphone</th>
+                            <?php foreach ($kriteria as $k) : ?>
+                                <th><?= htmlspecialchars($k['nama_kriteria'], ENT_QUOTES, 'UTF-8') ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $d) : ?>
+                            <tr>
+                                <td><?= htmlspecialchars($d['nama'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <?php foreach ($kriteria as $id_k => $k) : ?>
+                                    <td><?= isset($d['nilai'][$id_k]) ? $d['nilai'][$id_k] : '-' ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Matriks Normalisasi</h3>
+        <div class="table-responsive">
+            <?php if (empty($normalisasi) || empty($kriteria)) : ?>
+                <p class="no-data">Belum ada data normalisasi.</p>
+            <?php else : ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Smartphone</th>
+                            <?php foreach ($kriteria as $k) : ?>
+                                <th><?= htmlspecialchars($k['nama_kriteria'], ENT_QUOTES, 'UTF-8') ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $id_s => $d) : ?>
+                            <tr>
+                                <td><?= htmlspecialchars($d['nama'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <?php foreach ($kriteria as $id_k => $k) : ?>
+                                    <td><?= isset($normalisasi[$id_s][$id_k]) ? number_format($normalisasi[$id_s][$id_k], 2) : '-' ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
 
     <div class="card">
         <h3>Ranking Lengkap</h3>
@@ -143,7 +203,7 @@ Require_once __DIR__ . '/../layout/sidebar.php';
                             <tr>
                                 <td><?= $rank++ ?></td>
                                 <td><?= htmlspecialchars($h['nama'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= round($h['nilai'], 3) ?></td>
+                                <td><?= number_format($h['nilai'], 3) ?></td>
                                 <td><?= $spek ? 'Rp ' . number_format($spek['harga']) : '-' ?></td>
                                 <td><?= $spek ? $spek['ram'] . ' GB' : '-' ?></td>
                                 <td><?= $spek ? $spek['benchmark_antutu'] : '-' ?></td>
