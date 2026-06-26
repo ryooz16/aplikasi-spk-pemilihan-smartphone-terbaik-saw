@@ -7,6 +7,10 @@ body {
     color: #1f2937;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /* SIDEBAR */
 .sidebar {
     width: 250px;
@@ -264,17 +268,45 @@ tbody tr:hover td {
 @media (max-width: 960px) {
     .content {
         margin-left: 0;
-        padding: 24px;
+        padding: 24px 16px;
     }
     .sidebar {
         position: relative;
         width: 100%;
         min-height: auto;
-        box-shadow: none;
-        padding: 22px 18px;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+        padding: 20px 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .sidebar h2 {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 22px;
     }
     .sidebar a {
-        margin: 6px 0;
+        margin: 0;
+        padding: 10px 14px;
+        font-size: 13px;
+        flex: 1 1 auto;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+        padding-left: 14px;
+    }
+    .sidebar br {
+        display: none;
+    }
+    .page-header h2 {
+        font-size: 24px;
+    }
+    .stat-card h3 {
+        font-size: 32px;
     }
 }
 </style>
@@ -287,4 +319,6 @@ tbody tr:hover td {
     <a href="nilai.php" class="<?= $currentPage === 'nilai.php' ? 'active' : '' ?>">📝 Input Nilai</a>
     <a href="hasil.php" class="<?= $currentPage === 'hasil.php' ? 'active' : '' ?>">🏆 Hasil Ranking</a>
     <!-- <a href="../proses/hitung_saw.php" class="<?= $currentPage === 'hitung_saw.php' ? 'active' : '' ?>">⚙️ Hitung SAW</a> -->
+    <br>
+    <a href="logout.php" style="color: #ef4444; margin-top: 20px;">🚪 Logout</a>
 </div>
